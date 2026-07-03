@@ -33,7 +33,9 @@ export function JoinScreen() {
   return (
     <Screen>
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-6">
-        <h1 className="text-3xl font-black text-white">{t('join.title')}</h1>
+        <h1 className="font-display text-4xl text-kantine-gold [-webkit-text-stroke:1.5px_var(--color-kantine-ink)] [paint-order:stroke_fill]">
+          {t('join.title')}
+        </h1>
         <TextField
           id="join-code"
           label={t('join.roomCodeLabel')}
@@ -59,7 +61,11 @@ export function JoinScreen() {
           }}
           maxLength={24}
         />
-        {error && <p className="text-sm font-semibold text-red-400">{error}</p>}
+        {error && (
+          <p className="rounded-xl border-2 border-kantine-ink bg-kantine-coral px-4 py-2 text-sm font-bold text-kantine-cream">
+            {error}
+          </p>
+        )}
         <div className="flex flex-col gap-3">
           <Button type="submit">{t('join.submit')}</Button>
           <Button variant="ghost" type="button" onClick={goHome}>

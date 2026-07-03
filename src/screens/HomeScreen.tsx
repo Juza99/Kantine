@@ -11,8 +11,10 @@ export function HomeScreen() {
   return (
     <Screen>
       <div>
-        <h1 className="text-5xl font-black text-white">{t('home.title')}</h1>
-        <p className="mt-3 text-lg text-white/60">{t('home.subtitle')}</p>
+        <h1 className="font-display text-6xl text-kantine-gold [-webkit-text-stroke:2.5px_var(--color-kantine-ink)] [paint-order:stroke_fill]">
+          {t('home.title')}
+        </h1>
+        <p className="mt-4 text-lg font-semibold text-kantine-cream/80">{t('home.subtitle')}</p>
       </div>
       <div className="flex w-full flex-col gap-4">
         <Button variant="primary" onClick={startCreateFlow}>

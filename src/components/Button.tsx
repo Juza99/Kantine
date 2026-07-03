@@ -9,17 +9,17 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    'bg-party-500 text-white shadow-lg shadow-party-900/40 active:bg-party-600 disabled:bg-white/10 disabled:text-white/40 disabled:shadow-none',
+    'rounded-full border-[3px] border-kantine-ink bg-kantine-gold text-kantine-ink shadow-[4px_4px_0_0_var(--color-kantine-ink)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none disabled:translate-x-0 disabled:translate-y-0 disabled:border-kantine-ink/25 disabled:bg-kantine-cream-dim/40 disabled:text-kantine-ink/35 disabled:shadow-none',
   secondary:
-    'bg-white/10 text-white border border-white/20 active:bg-white/20 disabled:opacity-40',
-  ghost: 'text-white/70 active:text-white',
+    'rounded-2xl border-[3px] border-kantine-ink bg-kantine-cream text-kantine-ink shadow-[4px_4px_0_0_var(--color-kantine-ink)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none disabled:opacity-40',
+  ghost: 'text-kantine-cream/80 underline decoration-2 underline-offset-4 active:text-kantine-cream',
 }
 
 export function Button({ variant = 'primary', className = '', children, ...props }: ButtonProps) {
   return (
     <button
       type="button"
-      className={`w-full rounded-2xl px-6 py-5 text-lg font-bold transition-colors disabled:cursor-not-allowed ${variantClasses[variant]} ${className}`}
+      className={`w-full px-6 py-5 text-lg font-bold transition-all disabled:cursor-not-allowed ${variantClasses[variant]} ${className}`}
       {...props}
     >
       {children}

@@ -2,18 +2,28 @@
 
 @theme {
   --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Baloo 2', system-ui, sans-serif;
 
-  --color-party-50: #fff7ed;
-  --color-party-100: #ffedd5;
-  --color-party-200: #fed7aa;
-  --color-party-300: #fdba74;
-  --color-party-400: #fb923c;
-  --color-party-500: #f97316;
-  --color-party-600: #ea580c;
-  --color-party-700: #c2410c;
-  --color-party-800: #9a3412;
-  --color-party-900: #123f2b;
-  --color-party-950: #0b2419;
+  /* Warm, playful party-game palette */
+  --color-kantine-cream: #fbf1d9;
+  --color-kantine-cream-dim: #ead9ad;
+  --color-kantine-ink: #2a2118;
+
+  --color-kantine-green-900: #263420;
+  --color-kantine-green-800: #33452c;
+  --color-kantine-green-700: #435c38;
+  --color-kantine-green-600: #547045;
+
+  --color-kantine-teal: #2f8f8a;
+  --color-kantine-teal-dark: #1f6b66;
+
+  --color-kantine-gold: #f5c518;
+  --color-kantine-gold-dark: #d99e12;
+
+  --color-kantine-coral: #e2543f;
+  --color-kantine-coral-dark: #b83f2d;
+
+  --color-kantine-blue: #3f7fa6;
 }
 
 html,
@@ -24,6 +34,7 @@ body,
 
 body {
   margin: 0;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color-scheme: dark;

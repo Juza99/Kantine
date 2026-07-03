@@ -25,7 +25,9 @@ export function CreateNameScreen() {
   return (
     <Screen>
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-6">
-        <h1 className="text-3xl font-black text-white">{t('home.create')}</h1>
+        <h1 className="font-display text-4xl text-kantine-gold [-webkit-text-stroke:1.5px_var(--color-kantine-ink)] [paint-order:stroke_fill]">
+          {t('home.create')}
+        </h1>
         <TextField
           id="create-name"
           label={t('create.nameLabel')}
@@ -38,7 +40,11 @@ export function CreateNameScreen() {
           maxLength={24}
           autoFocus
         />
-        {error && <p className="text-sm font-semibold text-red-400">{error}</p>}
+        {error && (
+          <p className="rounded-xl border-2 border-kantine-ink bg-kantine-coral px-4 py-2 text-sm font-bold text-kantine-cream">
+            {error}
+          </p>
+        )}
         <div className="flex flex-col gap-3">
           <Button type="submit">{t('create.submit')}</Button>
           <Button variant="ghost" type="button" onClick={goHome}>

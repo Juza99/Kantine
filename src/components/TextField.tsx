@@ -7,10 +7,12 @@ type TextFieldProps = InputHTMLAttributes<HTMLInputElement> & {
 export function TextField({ label, className = '', id, ...props }: TextFieldProps) {
   return (
     <label className="block w-full text-left" htmlFor={id}>
-      <span className="mb-2 block text-sm font-semibold text-white/70">{label}</span>
+      <span className="mb-2 block text-sm font-bold tracking-wide text-kantine-cream/80 uppercase">
+        {label}
+      </span>
       <input
         id={id}
-        className={`w-full rounded-2xl border border-white/15 bg-white/5 px-5 py-4 text-lg text-white placeholder-white/30 outline-none focus:border-party-400 ${className}`}
+        className={`w-full rounded-2xl border-[3px] border-kantine-ink bg-kantine-cream px-5 py-4 text-lg font-semibold text-kantine-ink placeholder-kantine-ink/35 outline-none focus:border-kantine-teal-dark ${className}`}
         {...props}
       />
     </label>
