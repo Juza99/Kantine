@@ -35,6 +35,27 @@
     "title": "Spel start...",
     "subtitle": "Maak je klaar!"
   },
+  "answering": {
+    "roundLabel": "Ronde {{current}}/{{total}}",
+    "waiting": "Wachten op de rest... ({{answered}}/{{total}})",
+    "subjectHint": "Dit gaat over jou. Kies je echte antwoord!",
+    "guesserHint": "Wat zouden ze kiezen, denk je?",
+    "takePhoto": "📸 Maak een foto",
+    "processing": "Bezig...",
+    "retake": "Opnieuw",
+    "usePhoto": "Gebruik deze foto"
+  },
+  "reveal": {
+    "votes": "{{count}} stem",
+    "votes_other": "{{count}} stemmen",
+    "nextRound": "Volgende ronde",
+    "viewFinalScore": "Bekijk eindscore",
+    "waitingForHost": "Wachten tot de host doorgaat..."
+  },
+  "gameover": {
+    "title": "Eindstand",
+    "backToHome": "Terug naar start"
+  },
   "errors": {
     "nameRequired": "Vul je naam in",
     "roomCodeRequired": "Vul een geldige spelcode in (4 letters)",

@@ -35,6 +35,27 @@
     "title": "Game starting...",
     "subtitle": "Get ready!"
   },
+  "answering": {
+    "roundLabel": "Round {{current}}/{{total}}",
+    "waiting": "Waiting for the rest... ({{answered}}/{{total}})",
+    "subjectHint": "This one's about you. Pick your real answer!",
+    "guesserHint": "What do you think they'd pick?",
+    "takePhoto": "📸 Take a photo",
+    "processing": "Processing...",
+    "retake": "Retake",
+    "usePhoto": "Use this photo"
+  },
+  "reveal": {
+    "votes": "{{count}} vote",
+    "votes_other": "{{count}} votes",
+    "nextRound": "Next round",
+    "viewFinalScore": "View final score",
+    "waitingForHost": "Waiting for the host to continue..."
+  },
+  "gameover": {
+    "title": "Final Score",
+    "backToHome": "Back to home"
+  },
   "errors": {
     "nameRequired": "Please enter your name",
     "roomCodeRequired": "Please enter a valid room code (4 letters)",

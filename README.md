@@ -6,9 +6,24 @@ about one player, then compares) and an **Imposter** round (everyone gets a
 statement except one person, who has to blend in). Imposter rounds appear
 less frequently than "That's You" rounds.
 
-This repo currently implements **Phase 1**: the app shell and real-time room
-system — home screen, create/join flow, a live lobby, and a placeholder
-"game starting" screen. No actual game rounds yet.
+This repo currently implements the app shell/room system plus the **"That's
+You" round type**. The Imposter round type and the alternation between the
+two are not built yet.
+
+The "That's You" round mixes three question formats, each drawn from a
+built-in bank in `src/data/thatsYouQuestions.ts`:
+
+- **vote** — a prompt about the whole group (e.g. "who'd blow out someone
+  else's candles?"); everyone taps another player, votes are tallied and the
+  top pick(s) score points
+- **guess** — one player privately answers a personal multiple-choice
+  question about themselves; everyone else guesses their answer and scores
+  points for a correct guess
+- **photo** — everyone takes a phone-camera photo for a prompt, revealed
+  together in a grid (no scoring, just for laughs)
+
+A game runs 6 rounds, host-paced (the host taps "next round" after each
+reveal), ending on a final scoreboard.
 
 Built with React + Vite, TypeScript, Tailwind CSS, Zustand, react-i18next
 (Dutch default, English secondary), and [PartyKit](https://www.partykit.io/)
@@ -18,14 +33,21 @@ for real-time room sync.
 
 ```
 src/
-  components/   Shared UI (buttons, inputs, language toggle, player list, ...)
-  screens/      Home, create-name, join, lobby, starting
-  store/        Zustand store driving which screen is shown
-  hooks/        useRoomConnection – opens/manages the PartySocket connection
+  components/   Shared UI (buttons, inputs, language toggle, player list,
+                camera capture, ...)
+  screens/      Home, create-name, join, lobby, starting, answering, reveal,
+                game over
+  store/        Zustand store driving which screen is shown and round state
+  hooks/        useRoomConnection – owns the PartySocket connection
+                (mounted once at the App root) plus sendStart/sendAnswer/
+                sendNextRound helpers
+  data/         thatsYouQuestions.ts – the vote/guess/photo question bank
   i18n/         react-i18next setup + nl/en translation files
   types/        Shared message/room types (used by both client and server)
 party/
-  server.ts     PartyKit server: room state, join/leave, host, start
+  server.ts     PartyKit server: room state, join/leave, host, start, and
+                the That's You round loop (question selection, answer
+                collection, scoring, reveal)
 ```
 
 ## Running locally
@@ -118,8 +140,12 @@ detection.
 - Player joins/leaves are broadcast to everyone in the room instantly, so
   every phone's lobby view updates live.
 - The host's "Start" button is disabled until at least 3 players have
-  joined. Hitting Start broadcasts a `starting` phase to everyone, showing
-  the placeholder "game starting..." screen (no game logic yet).
+  joined. Hitting Start broadcasts a `starting` phase, then the server picks
+  a random question and starts round 1.
+- Each round, the server waits until every player has submitted an answer
+  before revealing results (no timers) and broadcasting updated scores. The
+  host taps through to the next round; the game ends after 6 rounds with a
+  final scoreboard.
 
 ## Scripts
 

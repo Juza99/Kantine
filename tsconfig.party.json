@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "lib": ["ES2022"],
+    "lib": ["ES2022", "DOM"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "strict": true,
@@ -12,5 +12,5 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["party", "src/types"]
+  "include": ["party", "src/types", "src/data"]
 }

@@ -1,8 +1,16 @@
 import { create } from 'zustand'
-import type { Player, RoomPhase } from '../types/room'
+import type { Player, RoomPhase, RoundQuestionForClient, RoundResult, ScoreEntry } from '../types/room'
 import { generateRoomCode } from '../lib/room-code'
 
-export type View = 'home' | 'createName' | 'join' | 'lobby' | 'starting'
+export type View =
+  | 'home'
+  | 'createName'
+  | 'join'
+  | 'lobby'
+  | 'starting'
+  | 'answering'
+  | 'reveal'
+  | 'gameover'
 
 export type ConnectionStatus = 'idle' | 'connecting' | 'connected' | 'error'
 
@@ -16,6 +24,15 @@ type GameState = {
   connectionStatus: ConnectionStatus
   errorKey: string | null
 
+  roundIndex: number
+  totalRounds: number
+  currentQuestion: RoundQuestionForClient | null
+  answeredCount: number
+  totalToAnswer: number
+  hasAnswered: boolean
+  roundResult: RoundResult | null
+  scores: ScoreEntry[] | null
+
   goHome: () => void
   startCreateFlow: () => void
   startJoinFlow: () => void
@@ -25,6 +42,22 @@ type GameState = {
   setPlayerId: (id: string) => void
   setError: (errorKey: string | null) => void
   applyServerState: (players: Player[], hostId: string | null, phase: RoomPhase) => void
+  applyRoundStart: (payload: {
+    roundIndex: number
+    totalRounds: number
+    question: RoundQuestionForClient
+    answeredCount: number
+    totalToAnswer: number
+  }) => void
+  applyAnswerProgress: (answeredCount: number, totalToAnswer: number) => void
+  applyRoundReveal: (payload: {
+    roundIndex: number
+    totalRounds: number
+    result: RoundResult
+    scores: ScoreEntry[]
+  }) => void
+  applyGameOver: (scores: ScoreEntry[]) => void
+  markAnswered: () => void
 }
 
 const initialRoomState = {
@@ -35,6 +68,14 @@ const initialRoomState = {
   hostId: null,
   connectionStatus: 'idle' as ConnectionStatus,
   errorKey: null,
+  roundIndex: 0,
+  totalRounds: 0,
+  currentQuestion: null,
+  answeredCount: 0,
+  totalToAnswer: 0,
+  hasAnswered: false,
+  roundResult: null,
+  scores: null,
 }
 
 export const useGameStore = create<GameState>((set) => ({
@@ -72,9 +113,39 @@ export const useGameStore = create<GameState>((set) => ({
   setError: (errorKey) => set({ errorKey }),
 
   applyServerState: (players, hostId, phase) =>
-    set({
+    set((state) => ({
       players,
       hostId,
-      view: phase === 'starting' ? 'starting' : 'lobby',
+      // Round messages (round_start/round_reveal/game_over) own the view
+      // once play begins — a "state" broadcast (e.g. a player list update)
+      // must not yank the screen back to the lobby mid-round.
+      view: phase === 'lobby' || phase === 'starting' ? phase : state.view,
+    })),
+
+  applyRoundStart: (payload) =>
+    set({
+      view: 'answering',
+      roundIndex: payload.roundIndex,
+      totalRounds: payload.totalRounds,
+      currentQuestion: payload.question,
+      answeredCount: payload.answeredCount,
+      totalToAnswer: payload.totalToAnswer,
+      hasAnswered: false,
+      roundResult: null,
     }),
+
+  applyAnswerProgress: (answeredCount, totalToAnswer) => set({ answeredCount, totalToAnswer }),
+
+  applyRoundReveal: (payload) =>
+    set({
+      view: 'reveal',
+      roundIndex: payload.roundIndex,
+      totalRounds: payload.totalRounds,
+      roundResult: payload.result,
+      scores: payload.scores,
+    }),
+
+  applyGameOver: (scores) => set({ view: 'gameover', scores }),
+
+  markAnswered: () => set({ hasAnswered: true }),
 }))
