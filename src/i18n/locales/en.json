@@ -1,0 +1,51 @@
+{
+  "home": {
+    "title": "De Kantine",
+    "subtitle": "The party game for 2 to 8 players",
+    "create": "Create game",
+    "join": "Join game"
+  },
+  "join": {
+    "title": "Join game",
+    "roomCodeLabel": "Room code",
+    "roomCodePlaceholder": "E.G. ABCD",
+    "nameLabel": "Your name",
+    "namePlaceholder": "Enter your name",
+    "submit": "Join",
+    "back": "Back"
+  },
+  "create": {
+    "nameLabel": "Your name",
+    "namePlaceholder": "Enter your name",
+    "submit": "Create game",
+    "back": "Back"
+  },
+  "lobby": {
+    "roomCodeHint": "Share this code with your friends",
+    "playersTitle": "Players",
+    "playersCount": "{{count}} player",
+    "playersCount_other": "{{count}} players",
+    "waitingForHost": "Waiting for the host to start the game...",
+    "start": "Start",
+    "minPlayersHint": "At least 3 players needed to start",
+    "you": "(you)",
+    "host": "host"
+  },
+  "starting": {
+    "title": "Game starting...",
+    "subtitle": "Get ready!"
+  },
+  "errors": {
+    "nameRequired": "Please enter your name",
+    "roomCodeRequired": "Please enter a valid room code (4 letters)",
+    "roomFull": "This room is full (max. 8 players)",
+    "roomNotFound": "This room code doesn't exist",
+    "nameTaken": "This name is already taken",
+    "connectionLost": "Connection lost, please try again",
+    "generic": "Something went wrong, please try again"
+  },
+  "language": {
+    "nl": "NL",
+    "en": "EN"
+  }
+}

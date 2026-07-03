@@ -1,0 +1,34 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  --color-party-50: #fff7ed;
+  --color-party-100: #ffedd5;
+  --color-party-200: #fed7aa;
+  --color-party-300: #fdba74;
+  --color-party-400: #fb923c;
+  --color-party-500: #f97316;
+  --color-party-600: #ea580c;
+  --color-party-700: #c2410c;
+  --color-party-800: #9a3412;
+  --color-party-900: #123f2b;
+  --color-party-950: #0b2419;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}

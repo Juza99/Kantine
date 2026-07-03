@@ -1,0 +1,51 @@
+{
+  "home": {
+    "title": "De Kantine",
+    "subtitle": "Het feestspel voor 2 tot 8 spelers",
+    "create": "Spel aanmaken",
+    "join": "Meedoen"
+  },
+  "join": {
+    "title": "Meedoen",
+    "roomCodeLabel": "Spelcode",
+    "roomCodePlaceholder": "BIJV. ABCD",
+    "nameLabel": "Jouw naam",
+    "namePlaceholder": "Vul je naam in",
+    "submit": "Doe mee",
+    "back": "Terug"
+  },
+  "create": {
+    "nameLabel": "Jouw naam",
+    "namePlaceholder": "Vul je naam in",
+    "submit": "Maak spel",
+    "back": "Terug"
+  },
+  "lobby": {
+    "roomCodeHint": "Deel deze code met je vrienden",
+    "playersTitle": "Spelers",
+    "playersCount": "{{count}} speler",
+    "playersCount_other": "{{count}} spelers",
+    "waitingForHost": "Wachten tot de host het spel start...",
+    "start": "Start",
+    "minPlayersHint": "Minimaal 3 spelers nodig om te starten",
+    "you": "(jij)",
+    "host": "host"
+  },
+  "starting": {
+    "title": "Spel start...",
+    "subtitle": "Maak je klaar!"
+  },
+  "errors": {
+    "nameRequired": "Vul je naam in",
+    "roomCodeRequired": "Vul een geldige spelcode in (4 letters)",
+    "roomFull": "Deze kamer zit vol (max. 8 spelers)",
+    "roomNotFound": "Deze spelcode bestaat niet",
+    "nameTaken": "Deze naam is al in gebruik",
+    "connectionLost": "Verbinding verloren, probeer het opnieuw",
+    "generic": "Er ging iets mis, probeer het opnieuw"
+  },
+  "language": {
+    "nl": "NL",
+    "en": "EN"
+  }
+}
