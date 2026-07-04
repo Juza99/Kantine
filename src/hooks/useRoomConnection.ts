@@ -11,6 +11,7 @@ export function useRoomConnection() {
   useEffect(() => {
     if (!roomCode || !playerName) return
 
+    console.log('Connecting to PartyKit host:', PARTYKIT_HOST)
     const socket = new PartySocket({
       host: PARTYKIT_HOST,
       room: roomCode.toLowerCase(),
