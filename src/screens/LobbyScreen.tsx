@@ -4,12 +4,17 @@ import { Button } from '../components/Button'
 import { RoomCodeDisplay } from '../components/RoomCodeDisplay'
 import { PlayerList } from '../components/PlayerList'
 import { useGameStore } from '../store/gameStore'
-import { useRoomConnection } from '../hooks/useRoomConnection'
 import { MIN_PLAYERS_TO_START } from '../types/room'
 
 export function LobbyScreen() {
   const { t } = useTranslation()
-  const { sendStart } = useRoomConnection()
+  const socket = useGameStore((s) => s.socket)
+
+  const sendStart = () => {
+    if (socket) {
+      socket.send(JSON.stringify({ type: 'start' }))
+    }
+  }
 
   const roomCode = useGameStore((s) => s.roomCode)
   const players = useGameStore((s) => s.players)

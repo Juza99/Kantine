@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import type PartySocket from 'partysocket'
 import type { Player, RoomPhase } from '../types/room'
 import { generateRoomCode } from '../lib/room-code'
 
@@ -15,6 +16,7 @@ type GameState = {
   hostId: string | null
   connectionStatus: ConnectionStatus
   errorKey: string | null
+  socket: PartySocket | null
 
   goHome: () => void
   startCreateFlow: () => void
@@ -24,6 +26,7 @@ type GameState = {
   setConnectionStatus: (status: ConnectionStatus) => void
   setPlayerId: (id: string) => void
   setError: (errorKey: string | null) => void
+  setSocket: (socket: PartySocket | null) => void
   applyServerState: (players: Player[], hostId: string | null, phase: RoomPhase) => void
 }
 
@@ -35,6 +38,7 @@ const initialRoomState = {
   hostId: null,
   connectionStatus: 'idle' as ConnectionStatus,
   errorKey: null,
+  socket: null,
 }
 
 export const useGameStore = create<GameState>((set) => ({
@@ -70,6 +74,8 @@ export const useGameStore = create<GameState>((set) => ({
   setPlayerId: (id) => set({ playerId: id }),
 
   setError: (errorKey) => set({ errorKey }),
+
+  setSocket: (socket) => set({ socket }),
 
   applyServerState: (players, hostId, phase) =>
     set({

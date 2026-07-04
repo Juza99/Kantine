@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import PartySocket from 'partysocket'
 import { useGameStore } from '../store/gameStore'
 import { PARTYKIT_HOST } from '../lib/party-config'
@@ -7,7 +7,6 @@ import type { ClientMessage, ErrorCode, ServerMessage } from '../types/room'
 export function useRoomConnection() {
   const roomCode = useGameStore((s) => s.roomCode)
   const playerName = useGameStore((s) => s.playerName)
-  const socketRef = useRef<PartySocket | null>(null)
 
   useEffect(() => {
     if (!roomCode || !playerName) return
@@ -16,7 +15,7 @@ export function useRoomConnection() {
       host: PARTYKIT_HOST,
       room: roomCode.toLowerCase(),
     })
-    socketRef.current = socket
+    useGameStore.getState().setSocket(socket)
 
     socket.addEventListener('open', () => {
       useGameStore.getState().setConnectionStatus('connected')
@@ -51,18 +50,9 @@ export function useRoomConnection() {
 
     return () => {
       socket.close()
-      socketRef.current = null
+      useGameStore.getState().setSocket(null)
     }
   }, [roomCode, playerName])
-
-  function sendStart() {
-    const socket = socketRef.current
-    if (!socket) return
-    const message: ClientMessage = { type: 'start' }
-    socket.send(JSON.stringify(message))
-  }
-
-  return { sendStart }
 }
 
 function errorCodeToKey(code: ErrorCode) {

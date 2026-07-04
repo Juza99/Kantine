@@ -6,9 +6,11 @@ import { JoinScreen } from './screens/JoinScreen'
 import { LobbyScreen } from './screens/LobbyScreen'
 import { StartingScreen } from './screens/StartingScreen'
 import { useGameStore } from './store/gameStore'
+import { useRoomConnection } from './hooks/useRoomConnection'
 
 function App() {
   const view = useGameStore((s) => s.view)
+  useRoomConnection()
 
   return (
     <>
